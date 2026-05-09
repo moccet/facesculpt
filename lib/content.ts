@@ -267,7 +267,7 @@ export const TIERS: Tier[] = [
 
 export const WORKOUTS_FAQ: FAQ[] = [
   { q: "When can I book?", a: "The diary opens weekly, every Monday at nine. Members see the diary fourteen days ahead of the public window." },
-  { q: "How does payment work?", a: "A submitted request is held until the studio confirms availability inside one working day. Card is taken when the appointment is confirmed. No charge before confirmation." },
+  { q: "How does payment work?", a: "Payment is taken at booking via Stripe. The studio confirms the time inside one working day. If we cannot fit you in, the full amount is refunded automatically." },
   { q: "What if I want to reschedule?", a: "Reschedule free up to twenty four hours before. Inside that window, the full price applies. Members have one free same-day rebook each month." },
   { q: "Will it hurt?", a: "No. Microcurrent runs below the threshold of perception for most clients. EMS is felt as a firm tightening, not pain. Manual work is firm, not deep tissue." },
   { q: "Is there downtime?", a: "None. Makeup may be reapplied immediately and clients return to work. Some have a faint flush across the cheek for an hour afterwards." },
@@ -315,7 +315,7 @@ export const FOUNDERS = [
 ];
 
 export const HOW_STEPS = [
-  { num: "01 · Sign up", title: "Sign up online", text: "Card on file, no charge until the studio confirms availability for your first session." },
+  { num: "01 · Sign up", title: "Sign up online", text: "Subscribe via Stripe. First month is charged at signup; the studio confirms session one inside one working day." },
   { num: "02 · First session", title: "Book session one", text: "Inside seven days of joining. Photographs and biometric assessment taken at session one, saved to your file." },
   { num: "03 · Cadence", title: "One workout each month", text: "Booked via the member diary. Sculpt Signature included, redeem in the calendar month." },
   { num: "04 · Review", title: "Annual review", text: "Twelve months in, comparative photographs and assessment are taken. The full record is reviewed in writing." },

@@ -1,5 +1,6 @@
 import { TIERS } from "@/lib/content";
 import { SectionHead } from "@/components/ui/SectionHead";
+import { SubscribeButton } from "./SubscribeButton";
 import styles from "./TiersGrid.module.css";
 
 /**
@@ -49,7 +50,9 @@ export function TiersGrid() {
                   </li>
                 ))}
               </ul>
-              <a href={t.ctaHref} className={styles.cta}>{t.ctaLabel}</a>
+              <SubscribeButton tier={t.variant} className={styles.cta}>
+                {t.ctaLabel}
+              </SubscribeButton>
             </article>
           ))}
         </div>

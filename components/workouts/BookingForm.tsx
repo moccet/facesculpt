@@ -134,6 +134,16 @@ export function BookingForm() {
         setStatus("error");
         return;
       }
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        checkoutUrl?: string;
+        paymentRequired?: boolean;
+      };
+      if (data.checkoutUrl) {
+        // Hand off to Stripe Checkout. Slack already has the booking record.
+        window.location.href = data.checkoutUrl;
+        return;
+      }
       setStatus("success");
     } catch {
       setErrorMsg("Network error, please try again.");
@@ -366,7 +376,7 @@ export function BookingForm() {
                 className={`${buttonStyles.btn} ${buttonStyles.dark}`}
                 disabled={status === "loading"}
               >
-                {status === "loading" ? "Submitting…" : "Submit request"}
+                {status === "loading" ? "Submitting…" : `Pay & book${total ? ` · £${total}` : ""}`}
               </button>
               {status === "error" && (
                 <p className={styles.note} role="alert" style={{ color: "#b00020" }}>
@@ -374,8 +384,7 @@ export function BookingForm() {
                 </p>
               )}
               <p className={styles.note}>
-                A submitted request is held until the studio confirms availability inside one working day. No card is
-                charged at this point.
+                Payment is taken at booking via Stripe. If the studio cannot fit you in inside one working day, you are refunded in full.
               </p>
             </div>
           </form>
