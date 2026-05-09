@@ -1,0 +1,114 @@
+.wrap { background: var(--cream); }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 1100px;
+  margin: clamp(32px, 4vw, 48px) auto 0;
+}
+@media (min-width: 800px) { .grid { grid-template-columns: 1fr 1fr; align-items: stretch; } }
+
+.tier {
+  padding: clamp(32px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.standard { background: var(--paper); }
+.plus { background: var(--ink); color: var(--paper); }
+.flag {
+  position: absolute;
+  top: -8px;
+  left: 28px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--ink-2);
+}
+.plus .eyebrow { color: rgba(255,255,255,0.55); }
+.name {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+}
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 18px 0 8px;
+}
+.price {
+  font-size: clamp(48px, 5.5vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+.period { font-size: 14px; opacity: 0.7; }
+.strap {
+  font-size: 13px;
+  line-height: 1.55;
+  opacity: 0.75;
+  margin-bottom: 22px;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+  flex: 1;
+}
+.list li {
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 11px 0;
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid;
+}
+.standard .list li {
+  border-color: var(--line);
+  color: var(--ink);
+}
+.plus .list li {
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+}
+.standard .list li:first-child { border-top: 1px solid var(--line); }
+.plus .list li:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
+.num {
+  font-weight: 700;
+  opacity: 0.4;
+  min-width: 20px;
+}
+.cta {
+  display: inline-block;
+  padding: 14px 24px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+  align-self: flex-start;
+}
+.standard .cta { background: var(--ink); color: var(--paper); }
+.plus .cta { background: var(--paper); color: var(--ink); }
+.note {
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 28px;
+}

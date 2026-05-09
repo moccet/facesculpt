@@ -1,0 +1,125 @@
+.nav {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.row {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 18px var(--pad-x);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+}
+@media (max-width: 899px) {
+  .row {
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    padding: 14px 20px;
+  }
+}
+.left, .right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.right {
+  justify-content: flex-end;
+  gap: 18px;
+}
+.link {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: none;
+}
+.link:hover { color: var(--ink-2); }
+.linkActive { font-weight: 700; }
+@media (min-width: 900px) {
+  .link { display: inline; }
+}
+.iconBtn { padding: 6px; }
+.iconBtn svg {
+  width: 18px; height: 18px;
+  stroke: var(--ink); fill: none; stroke-width: 1.5;
+}
+.iconBtn:hover svg { stroke: var(--ink-2); }
+.menuToggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+}
+.menuToggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+}
+@media (min-width: 900px) { .menuToggle { display: none; } }
+
+.cta {
+  display: none;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 18px;
+  background: var(--ink);
+  color: var(--paper);
+}
+.cta:hover { background: var(--ink-2); }
+@media (min-width: 700px) { .cta { display: inline-block; } }
+
+/* Mobile menu */
+.mobile {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--paper);
+  z-index: 200;
+  padding: 24px;
+}
+.mobileOpen {
+  display: flex;
+  flex-direction: column;
+}
+.mobileTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mobileClose {
+  font-size: 28px;
+  padding: 8px;
+  line-height: 0.6;
+  background: none;
+  border: 0;
+}
+.mobileList {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+}
+.mobileList a {
+  font-size: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.mobileCta {
+  margin-top: auto;
+  padding: 16px;
+  background: var(--ink);
+  color: var(--paper);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

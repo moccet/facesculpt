@@ -1,0 +1,11 @@
+.cat { padding: clamp(48px, 7vw, 80px) 0; }
+.catCream { background: var(--cream); }
+.catPaper { background: var(--paper); }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+@media (min-width: 700px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1080px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+.hidden { display: none; }

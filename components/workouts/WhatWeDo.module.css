@@ -1,0 +1,20 @@
+.wrap {
+  padding: clamp(48px, 7vw, 88px) 0;
+  text-align: center;
+  background: var(--cream);
+}
+.wrap .container { max-width: 880px; }
+.wrap h2 {
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+}
+.wrap p {
+  font-size: 16px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  max-width: 60ch;
+  margin: 0 auto;
+}
