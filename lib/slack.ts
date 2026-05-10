@@ -3,6 +3,17 @@
  * Single env var: SLACK_WEBHOOK_URL.
  */
 
+const RETRY_STATUSES = new Set([408, 425, 429, 500, 502, 503, 504]);
+
+async function readBodySnippet(response: Response): Promise<string> {
+  try {
+    const text = await response.text();
+    return text.length > 200 ? text.slice(0, 200) + "…" : text;
+  } catch {
+    return "";
+  }
+}
+
 export async function postWithRetry(
   url: string,
   body: unknown,
@@ -16,10 +27,23 @@ export async function postWithRetry(
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      if (response.ok || response.status < 500) return response;
-      lastError = new Error(`Slack webhook ${response.status}`);
+      if (response.ok) return response;
+
+      const snippet = await readBodySnippet(response);
+      const msg = `Slack webhook responded ${response.status}: ${snippet}`;
+      console.error(`[slack] ${msg}`);
+      // 4xx (other than 408/425/429) means the webhook URL is wrong or
+      // unauthorized — retrying won't help, surface the failure now.
+      if (!RETRY_STATUSES.has(response.status)) {
+        throw new Error(msg);
+      }
+      lastError = new Error(msg);
     } catch (err) {
       lastError = err;
+      console.error(
+        `[slack] post attempt ${i + 1}/${attempts} failed:`,
+        err instanceof Error ? err.message : err,
+      );
     }
     if (i < attempts - 1) {
       await new Promise((r) => setTimeout(r, 300 * Math.pow(2, i)));
@@ -38,7 +62,7 @@ export async function postSlack(
 ): Promise<Response | undefined> {
   const url = process.env.SLACK_WEBHOOK_URL;
   if (!url) {
-    console.log("[slack] SLACK_WEBHOOK_URL not set, skipping notification");
+    console.warn("[slack] SLACK_WEBHOOK_URL not set — skipping notification");
     return undefined;
   }
   return postWithRetry(url, blocks ? { text, blocks } : { text });
