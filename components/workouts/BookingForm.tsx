@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { BOOSTERS, WORKOUTS } from "@/lib/content";
 import { SectionHead } from "@/components/ui/SectionHead";
 import buttonStyles from "@/components/ui/Button.module.css";
@@ -58,6 +58,18 @@ export function BookingForm() {
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
   const startedFiredRef = useRef(false);
+
+  // Pre-select workout from `?w=<bookValue>` (set by /workouts grid cards
+  // and the Programmes "Book the Course" CTA). Runs once on mount; ignored
+  // if the param doesn't match a known booking option.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const w = params.get("w");
+    if (w && BOOK_OPTIONS.some((opt) => opt.value === w)) {
+      setWorkout(w);
+    }
+  }, []);
 
   const selectedWorkout = BOOK_OPTIONS.find((w) => w.value === workout);
   const selectedBoosters = BOOSTERS.filter((b) => boosters.has(b.slug));

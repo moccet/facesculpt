@@ -170,7 +170,7 @@ export const PROGRAMMES: Programme[] = [
       "Written protocol every visit",
       "Twelve-page protocol guide included",
     ],
-    cta: { label: "Book the Course", href: "/workouts#book" },
+    cta: { label: "Book the Course", href: "/workouts?w=course#book" },
     recommended: true,
     flag: "Most chosen",
   },

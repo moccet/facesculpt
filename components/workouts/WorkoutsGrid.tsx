@@ -27,7 +27,7 @@ export function WorkoutsGrid() {
               <ul className={styles.detail}>
                 {w.details.map((d, i) => <li key={i}>{d}</li>)}
               </ul>
-              <Link href={`/workouts#book?w=${w.bookValue}`} className={styles.cta} data-prefill={w.bookValue}>
+              <Link href={`/workouts?w=${w.bookValue}#book`} className={styles.cta}>
                 Book now
               </Link>
             </article>

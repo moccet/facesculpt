@@ -5,7 +5,7 @@ export function TwoTiles() {
   return (
     <section className={styles.wrap}>
       <div className={styles.grid}>
-        <Link href="/workouts" className={styles.tile}>
+        <Link href="/workouts#book" className={styles.tile}>
           <h3 className={styles.name}>Studio-grade workouts</h3>
           <span className={styles.cta}>Book a workout</span>
         </Link>

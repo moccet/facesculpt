@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { PROGRAMMES } from "@/lib/content";
 import { SectionHead } from "@/components/ui/SectionHead";
+import { ProgrammeCTA } from "./ProgrammeCTA";
 import styles from "./ProgrammesGrid.module.css";
 
 export function ProgrammesGrid() {
@@ -28,9 +28,9 @@ export function ProgrammesGrid() {
               <ul className={styles.list}>
                 {p.list.map((item, i) => <li key={i}>{item}</li>)}
               </ul>
-              <Link href={p.cta.href} className={styles.cta}>
+              <ProgrammeCTA href={p.cta.href} slug={p.slug} className={styles.cta}>
                 {p.cta.label}
-              </Link>
+              </ProgrammeCTA>
             </article>
           ))}
         </div>
