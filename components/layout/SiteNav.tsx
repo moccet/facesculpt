@@ -4,6 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Wordmark } from "./Wordmark";
+import { SearchModal } from "./SearchModal";
+import { AccountModal } from "./AccountModal";
+import { useCart } from "@/lib/cart";
 import styles from "./SiteNav.module.css";
 
 const NAV_LINKS = [
@@ -16,6 +19,9 @@ const NAV_LINKS = [
 export function SiteNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
+  const { count, hydrated, open: openCart } = useCart();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -25,6 +31,11 @@ export function SiteNav() {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
+      // Cmd/Ctrl + K opens search — industry-standard shortcut.
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -34,6 +45,9 @@ export function SiteNav() {
   useEffect(() => { setOpen(false); }, [pathname]);
 
   const isActive = (href: string) => pathname === href || pathname?.startsWith(href + "/");
+
+  // Render the badge only after hydration so server/client output match.
+  const badgeCount = hydrated && count > 0 ? count : null;
 
   return (
     <>
@@ -62,14 +76,31 @@ export function SiteNav() {
           </div>
           <Wordmark />
           <div className={styles.right}>
-            <button type="button" className={styles.iconBtn} aria-label="Search">
+            <button
+              type="button"
+              className={styles.iconBtn}
+              aria-label="Search"
+              onClick={() => setSearchOpen(true)}
+            >
               <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
             </button>
-            <button type="button" className={styles.iconBtn} aria-label="Account">
+            <button
+              type="button"
+              className={styles.iconBtn}
+              aria-label="Account"
+              onClick={() => setAccountOpen(true)}
+            >
               <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
             </button>
-            <button type="button" className={styles.iconBtn} aria-label="Bag">
+            <button
+              type="button"
+              className={styles.iconBtn}
+              aria-label={badgeCount ? `Bag, ${badgeCount} items` : "Bag"}
+              onClick={openCart}
+              data-count={badgeCount ?? undefined}
+            >
               <svg viewBox="0 0 24 24"><path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+              {badgeCount && <span className={styles.badge} aria-hidden>{badgeCount}</span>}
             </button>
             <Link href="/workouts#book" className={styles.cta}>Book</Link>
           </div>
@@ -104,6 +135,9 @@ export function SiteNav() {
           Book a workout
         </Link>
       </div>
+
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <AccountModal open={accountOpen} onClose={() => setAccountOpen(false)} />
     </>
   );
 }

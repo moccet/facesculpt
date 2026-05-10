@@ -128,19 +128,29 @@ async function onCheckoutCompleted(session: Stripe.Checkout.Session) {
     return;
   }
 
-  if (flow === "product") {
+  if (flow === "product" || flow === "cart") {
     const m = session.metadata ?? {};
     // shipping_details is on the API response but isn't in the typed Session
     // returned by the Stripe SDK, so we read it through a narrow cast.
     const ship = (session as unknown as {
       shipping_details?: { address?: Stripe.Address | null } | null;
     }).shipping_details?.address;
+    const itemsLine =
+      flow === "cart"
+        ? (m.items ?? "—").replace(/,/g, "\n")
+        : `${m.slug ?? "—"} × ${m.quantity ?? 1}`;
     const blocks = [
-      { type: "header", text: { type: "plain_text", text: "🛒 FaceSculpt — shop order" } },
+      {
+        type: "header",
+        text: {
+          type: "plain_text",
+          text: flow === "cart" ? "🛒 FaceSculpt — cart checkout" : "🛒 FaceSculpt — shop order",
+        },
+      },
       {
         type: "section",
         fields: [
-          { type: "mrkdwn", text: `*Product*\n${m.slug ?? "—"} × ${m.quantity ?? 1}` },
+          { type: "mrkdwn", text: `*Items*\n${itemsLine}` },
           { type: "mrkdwn", text: `*Total*\n${amount}` },
           { type: "mrkdwn", text: `*Name*\n${customerName}` },
           { type: "mrkdwn", text: `*Email*\n${customerEmail}` },

@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import { Announcement } from "./Announcement";
 import { SiteNav } from "./SiteNav";
 import { SiteFooter } from "./SiteFooter";
+import { CartDrawer } from "./CartDrawer";
+import { CartProvider } from "@/lib/cart";
 
 const FULL_BLEED_PATHS = ["/assessment"];
 
@@ -17,11 +19,12 @@ export function ChromeFrame({ children }: { children: React.ReactNode }) {
     return <>{children}</>;
   }
   return (
-    <>
+    <CartProvider>
       <Announcement />
       <SiteNav />
       <main id="main">{children}</main>
       <SiteFooter />
-    </>
+      <CartDrawer />
+    </CartProvider>
   );
 }

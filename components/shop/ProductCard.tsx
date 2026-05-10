@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Product } from "@/lib/types";
+import { useCart } from "@/lib/cart";
 import styles from "./ProductCard.module.css";
 
 type Props = {
@@ -9,41 +10,25 @@ type Props = {
   alt?: boolean;
 };
 
-export function ProductCard({ product, alt = false }: Props) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+const ADDED_FEEDBACK_MS = 900;
 
-  async function buy() {
-    if (loading) return;
-    setLoading(true);
-    setError(false);
-    try {
-      const res = await fetch("/api/stripe/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mode: "product", slug: product.slug, quantity: 1 }),
-      });
-      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; url?: string };
-      if (!res.ok || !data.url) {
-        setError(true);
-        setLoading(false);
-        return;
-      }
-      window.location.href = data.url;
-    } catch {
-      setError(true);
-      setLoading(false);
-    }
+export function ProductCard({ product, alt = false }: Props) {
+  const { add } = useCart();
+  const [justAdded, setJustAdded] = useState(false);
+
+  function onAdd() {
+    add(product.slug, 1);
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), ADDED_FEEDBACK_MS);
   }
 
   return (
     <button
       type="button"
-      onClick={buy}
+      onClick={onAdd}
       className={`${styles.product} ${alt ? styles.productAlt : ""}`}
       id={product.slug}
-      aria-busy={loading}
-      aria-label={`Buy ${product.name} for £${product.price.toFixed(2)}`}
+      aria-label={`Add ${product.name} to bag, £${product.price.toFixed(2)}`}
       style={{ textAlign: "left", border: "none", cursor: "pointer", width: "100%" }}
     >
       <div className={styles.img}>
@@ -54,11 +39,19 @@ export function ProductCard({ product, alt = false }: Props) {
       <div className={styles.priceRow}>
         <div className={styles.priceStack}>
           <span className={styles.price}>£{product.price.toFixed(2)}</span>
-          <span className={styles.member}>
-            {error ? "Try again" : `members £${product.memberPrice}`}
-          </span>
+          <span className={styles.member}>members £{product.memberPrice}</span>
         </div>
-        <span className={styles.add} aria-hidden>{loading ? "…" : "+"}</span>
+        <span
+          className={styles.add}
+          aria-hidden
+          style={
+            justAdded
+              ? { background: "var(--ink)", color: "var(--paper)" }
+              : undefined
+          }
+        >
+          {justAdded ? "✓" : "+"}
+        </span>
       </div>
     </button>
   );
