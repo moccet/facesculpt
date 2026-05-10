@@ -11,6 +11,8 @@
 .img {
   aspect-ratio: 3/4;
   background: linear-gradient(180deg, #C9BCA8 0%, #A89886 100%);
+  position: relative;
+  overflow: hidden;
 }
 .name {
   font-size: 16px;

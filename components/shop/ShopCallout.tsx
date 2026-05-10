@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import styles from "./ShopCallout.module.css";
 
@@ -17,7 +18,15 @@ export function ShopCallout() {
             <Button href="/workouts#sculpt-signature" variant="outlineLight">See it in the studio</Button>
           </div>
         </div>
-        <div className={styles.img} aria-hidden="true" />
+        <div className={styles.img}>
+          <Image
+            src="/lifestyle/workout-signature.jpg"
+            alt="Sculpt Pro Microcurrent in use during Sculpt Signature"
+            fill
+            sizes="(max-width: 800px) 100vw, 50vw"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
       </div>
     </section>
   );

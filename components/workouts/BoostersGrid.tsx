@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BOOSTERS } from "@/lib/content";
 import { SectionHead } from "@/components/ui/SectionHead";
 import styles from "./BoostersGrid.module.css";
@@ -14,7 +15,17 @@ export function BoostersGrid() {
         <div className={styles.grid}>
           {BOOSTERS.map((b) => (
             <article key={b.slug} className={styles.card}>
-              <div className={styles.img} aria-hidden="true" />
+              <div className={styles.img}>
+                {b.image && (
+                  <Image
+                    src={b.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 700px) 100vw, (max-width: 1080px) 50vw, 25vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                )}
+              </div>
               <h3 className={styles.name}>{b.name}</h3>
               <div className={styles.metaRow}>
                 <span className={styles.price}>£{b.price}</span>

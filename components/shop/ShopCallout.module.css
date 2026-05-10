@@ -16,6 +16,8 @@
 .img {
   aspect-ratio: 4/5;
   background: linear-gradient(180deg, #383838 0%, #1f1f1f 100%);
+  position: relative;
+  overflow: hidden;
 }
 .eyebrow {
   font-size: 11px;

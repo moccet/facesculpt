@@ -14,7 +14,7 @@
   flex-direction: column;
   gap: 12px;
 }
-.img { aspect-ratio: 1/1; background: var(--cream-2); }
+.img { aspect-ratio: 1/1; background: var(--cream-2); position: relative; overflow: hidden; }
 .name { font-size: 15px; font-weight: 700; }
 .metaRow {
   display: flex;

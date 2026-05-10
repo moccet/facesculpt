@@ -17,6 +17,7 @@ export type Booster = {
   price: number;
   durationLabel: string;
   desc: string;
+  image?: string;
 };
 
 export type Programme = {

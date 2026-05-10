@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { HOMEPAGE_BESTSELLERS } from "@/lib/content";
 import { SectionHead } from "@/components/ui/SectionHead";
@@ -19,7 +20,17 @@ export function BestsellersCarousel() {
               className={styles.product}
               role="listitem"
             >
-              <div className={styles.img} aria-hidden="true" />
+              <div className={styles.img}>
+                {p.image && (
+                  <Image
+                    src={p.image}
+                    alt={p.name}
+                    fill
+                    sizes="(max-width: 700px) 70vw, (max-width: 1080px) 38vw, 22vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                )}
+              </div>
               <span className={styles.name}>{p.name}</span>
               <div className={styles.priceRow}>
                 <span className={styles.price}>£{p.price.toFixed(2)}</span>

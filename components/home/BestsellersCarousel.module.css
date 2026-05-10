@@ -24,6 +24,8 @@
 .img {
   aspect-ratio: 1/1;
   background: var(--cream-2);
+  position: relative;
+  overflow: hidden;
 }
 .name {
   font-size: 13px;

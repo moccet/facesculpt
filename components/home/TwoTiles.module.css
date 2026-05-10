@@ -19,10 +19,22 @@
   color: var(--paper);
   background: linear-gradient(180deg, #847463 0%, #5C5147 100%);
   overflow: hidden;
+  isolation: isolate;
+}
+.bg {
+  object-fit: cover;
+  z-index: 0;
+}
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.55) 100%);
+  z-index: 1;
 }
 .tileAlt {
   background: linear-gradient(180deg, #B7A998 0%, #8E7E6B 100%);
-  color: var(--ink);
+  color: var(--paper);
 }
 .name {
   font-size: clamp(20px, 2.5vw, 28px);
@@ -31,6 +43,8 @@
   letter-spacing: -0.005em;
   margin-bottom: 18px;
   line-height: 1.05;
+  position: relative;
+  z-index: 2;
 }
 .cta {
   display: inline-block;
@@ -42,6 +56,8 @@
   font-weight: 600;
   background: var(--paper);
   color: var(--ink);
+  position: relative;
+  z-index: 2;
 }
 .tileAlt .cta { background: var(--ink); color: var(--paper); }
 .cta:hover { opacity: 0.85; }

@@ -123,6 +123,7 @@ export const BOOSTERS: Booster[] = [
     price: 55,
     durationLabel: "10 min",
     desc: "Two-prong microcurrent for the under-eye and brow. Reduces puffiness on the morning of an event.",
+    image: "/lifestyle/workout-jawline.jpg",
   },
   {
     slug: "cryo",
@@ -130,6 +131,7 @@ export const BOOSTERS: Booster[] = [
     price: 45,
     durationLabel: "10 min",
     desc: "Targeted cooling across cheek and jaw. Tightens the surface, calms redness.",
+    image: "/products/cryo-globes.jpg",
   },
   {
     slug: "jaw-ems",
@@ -137,6 +139,7 @@ export const BOOSTERS: Booster[] = [
     price: 65,
     durationLabel: "15 min",
     desc: "Targeted EMS along the masseter and platysma. Lifts the lower line.",
+    image: "/lifestyle/workout-ems.jpg",
   },
   {
     slug: "led",
@@ -144,6 +147,7 @@ export const BOOSTERS: Booster[] = [
     price: 40,
     durationLabel: "15 min",
     desc: "Red and near-infrared light, hands-free. Supports collagen and recovery.",
+    image: "/lifestyle/expect-finish.jpg",
   },
 ];
 
@@ -221,16 +225,22 @@ export const PRODUCTS: Product[] = [
   { slug: "travel-kit", category: "kits", name: "Travel Sculpt Kit", meta: "Mini balm + oil + roller", price: 72, memberPrice: 65 },
 ];
 
-export const HOMEPAGE_BESTSELLERS: { slug: string; name: string; price: number }[] = [
-  { slug: "sculpt-pro", name: "Sculpt Pro Microcurrent", price: 325 },
-  { slug: "led-mask", name: "LED Recovery Mask", price: 245 },
-  { slug: "facial-oil", name: "Pro-Age Facial Oil", price: 72 },
-  { slug: "sculpt-ball", name: "Sculpt Ball Original", price: 68 },
-  { slug: "contour-serum", name: "Contour Serum", price: 88 },
-  { slug: "active-roll", name: "Active Roll Lymphatic", price: 44 },
-  { slug: "stone-set", name: "Sculpt Stone Set", price: 95 },
-  { slug: "vitamin-c", name: "Vitamin C 15", price: 68 },
-];
+export const HOMEPAGE_BESTSELLER_SLUGS = [
+  "stone-set",
+  "gua-sha",
+  "cryo-globes",
+  "face-roller",
+  "sculpt-pro",
+  "facial-oil",
+  "led-mask",
+  "contour-serum",
+] as const;
+
+export const HOMEPAGE_BESTSELLERS = HOMEPAGE_BESTSELLER_SLUGS.map((slug) => {
+  const product = PRODUCTS.find((p) => p.slug === slug);
+  if (!product) throw new Error(`Bestseller slug "${slug}" not found in PRODUCTS`);
+  return product;
+});
 
 export const TIERS: Tier[] = [
   {
@@ -310,9 +320,9 @@ export const EXPECT_STEPS = [
 ];
 
 export const TEAM = [
-  { name: "Lead therapist", role: "Manual lymphatic, microcurrent, EMS", bio: "Eight years inside London facial practices, trained on Synergy lymphatic drainage and Ziip microcurrent. Runs the protocol training and signs off every Sculpt course at session four." },
-  { name: "Therapist two", role: "Sculpt Hands · Pregnancy-safe", bio: "CIDESCO-trained. Runs Sculpt Hands and the manual elements of Sculpt Signature. Lead on the studio's pregnancy and post-natal protocols." },
-  { name: "Therapist three", role: "EMS Lift Intensive", bio: "Sports therapy background, four years in facial EMS. Runs the EMS Lift Intensive and the Jaw EMS booster. Trained on faradic, interferential and TENS protocols." },
+  { name: "Lead therapist", role: "Manual lymphatic, microcurrent, EMS", bio: "Eight years inside London facial practices, trained on Synergy lymphatic drainage and Ziip microcurrent. Runs the protocol training and signs off every Sculpt course at session four.", image: "/lifestyle/workout-signature.jpg" },
+  { name: "Therapist two", role: "Sculpt Hands · Pregnancy-safe", bio: "CIDESCO-trained. Runs Sculpt Hands and the manual elements of Sculpt Signature. Lead on the studio's pregnancy and post-natal protocols.", image: "/lifestyle/workout-hands.jpg" },
+  { name: "Therapist three", role: "EMS Lift Intensive", bio: "Sports therapy background, four years in facial EMS. Runs the EMS Lift Intensive and the Jaw EMS booster. Trained on faradic, interferential and TENS protocols.", image: "/lifestyle/workout-ems.jpg" },
 ];
 
 export const FOUNDERS = [
