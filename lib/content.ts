@@ -29,6 +29,7 @@ export const WORKOUTS: Workout[] = [
       "Manual sculpt across cheek and jaw",
       "Microcurrent finish for tone",
     ],
+    image: "/lifestyle/workout-express.jpg",
   },
   {
     slug: "sculpt-signature",
@@ -46,6 +47,7 @@ export const WORKOUTS: Workout[] = [
       "EMS in held positions",
       "Photograph and assessment to file",
     ],
+    image: "/lifestyle/workout-signature.jpg",
   },
   {
     slug: "sculpt-hands",
@@ -61,6 +63,7 @@ export const WORKOUTS: Workout[] = [
       "Cervical and jaw release",
       "Suitable for clients with implanted electrical devices",
     ],
+    image: "/lifestyle/workout-hands.jpg",
   },
   {
     slug: "jawline-define",
@@ -76,6 +79,7 @@ export const WORKOUTS: Workout[] = [
       "EMS along the lower jaw",
       "Cooling finish across the lower line",
     ],
+    image: "/lifestyle/workout-jawline.jpg",
   },
   {
     slug: "contour-reset",
@@ -92,6 +96,7 @@ export const WORKOUTS: Workout[] = [
       "Decolletage included",
       "Photograph and assessment to file",
     ],
+    image: "/lifestyle/workout-contour.jpg",
   },
   {
     slug: "ems-lift",
@@ -107,6 +112,7 @@ export const WORKOUTS: Workout[] = [
       "Manual support during held positions",
       "Cooling and recovery finish",
     ],
+    image: "/lifestyle/workout-ems.jpg",
   },
 ];
 
@@ -196,11 +202,11 @@ export const PRODUCTS: Product[] = [
   { slug: "sculpt-pro", category: "tools", name: "Sculpt Pro Microcurrent", meta: "Two-prong · Four levels · USB-C", price: 325, memberPrice: 293, flag: "Bestseller" },
   { slug: "active-roll", category: "tools", name: "Active Roll Lymphatic", meta: "Steel ribbed roller", price: 44, memberPrice: 40 },
   { slug: "sculpt-ball", category: "tools", name: "Sculpt Ball Original", meta: "Stainless contoured ball", price: 68, memberPrice: 61 },
-  { slug: "stone-set", category: "tools", name: "Sculpt Stone Set", meta: "Three stones · Cheek, jaw, eye", price: 95, memberPrice: 86 },
+  { slug: "stone-set", category: "tools", name: "Sculpt Stone Set", meta: "Three stones · Cheek, jaw, eye", price: 95, memberPrice: 86, image: "/products/stone-set.jpg" },
   { slug: "led-mask", category: "tools", name: "LED Recovery Mask", meta: "Red and near-infrared", price: 245, memberPrice: 221, flag: "New" },
-  { slug: "cryo-globes", category: "tools", name: "Cryo Globes Pair", meta: "Borosilicate glass · Freezer-safe", price: 52, memberPrice: 47 },
-  { slug: "gua-sha", category: "tools", name: "Sculpt Gua Sha", meta: "Bian stone · Four-edge profile", price: 36, memberPrice: 32 },
-  { slug: "face-roller", category: "tools", name: "Cooling Face Roller", meta: "Stainless · Dual-end", price: 28, memberPrice: 25 },
+  { slug: "cryo-globes", category: "tools", name: "Cryo Globes Pair", meta: "Borosilicate glass · Freezer-safe", price: 52, memberPrice: 47, image: "/products/cryo-globes.jpg" },
+  { slug: "gua-sha", category: "tools", name: "Sculpt Gua Sha", meta: "Bian stone · Four-edge profile", price: 36, memberPrice: 32, image: "/products/gua-sha.jpg" },
+  { slug: "face-roller", category: "tools", name: "Cooling Face Roller", meta: "Stainless · Dual-end", price: 28, memberPrice: 25, image: "/products/face-roller.jpg" },
   // Skincare
   { slug: "facial-oil", category: "skincare", name: "Pro-Age Facial Oil", meta: "Squalane · Bakuchiol · 30ml", price: 72, memberPrice: 65, flag: "Bestseller" },
   { slug: "cleansing-balm", category: "skincare", name: "Lift Cleansing Balm", meta: "Olive squalane · Shea · 75g", price: 42, memberPrice: 38 },
@@ -297,10 +303,10 @@ export const MEMBERSHIP_FAQ: FAQ[] = [
 ];
 
 export const EXPECT_STEPS = [
-  { num: "00 · Assess", name: "AI-guided assessment", desc: "Standardised photographs and a guided assessment. Facial symmetry, muscular tension, skin condition, saved to your file at session one." },
-  { num: "01 · Prep", name: "Cleanse and warm", desc: "Double cleanse, conductive prep. Knuckling along the lymphatic chain to wake the system. Single-use consumables, every contact point." },
-  { num: "02 · Sculpt", name: "Manual and microcurrent", desc: "Hands and stone work the lift lines. Microcurrent runs in held positions for muscle re-education. Sequenced to the day's findings." },
-  { num: "03 · Finish", name: "Recovery and protocol", desc: "Recovery mask, finishing oils. A written protocol card with the home routine specific to the day's assessment." },
+  { num: "00 · Assess", name: "AI-guided assessment", desc: "Standardised photographs and a guided assessment. Facial symmetry, muscular tension, skin condition, saved to your file at session one.", image: "/lifestyle/expect-assess.jpg" },
+  { num: "01 · Prep", name: "Cleanse and warm", desc: "Double cleanse, conductive prep. Knuckling along the lymphatic chain to wake the system. Single-use consumables, every contact point.", image: "/lifestyle/expect-prep.jpg" },
+  { num: "02 · Sculpt", name: "Manual and microcurrent", desc: "Hands and stone work the lift lines. Microcurrent runs in held positions for muscle re-education. Sequenced to the day's findings.", image: "/lifestyle/expect-sculpt.jpg" },
+  { num: "03 · Finish", name: "Recovery and protocol", desc: "Recovery mask, finishing oils. A written protocol card with the home routine specific to the day's assessment.", image: "/lifestyle/expect-finish.jpg" },
 ];
 
 export const TEAM = [

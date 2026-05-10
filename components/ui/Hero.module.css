@@ -12,6 +12,22 @@
   inset: 0;
   background: linear-gradient(180deg, #ECE7DD 0%, #DDD3C2 100%);
 }
+.photoImg {
+  z-index: 0;
+}
+/* Soft scrim so light type stays legible on photographic heroes. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.45) 100%);
+  z-index: 0;
+}
+.hasImage .title {
+  color: var(--paper);
+}
+.hasImage .flag {
+  background: var(--paper);
+}
 .overlay {
   position: relative;
   z-index: 1;

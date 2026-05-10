@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "./Button";
 import styles from "./BecomeMember.module.css";
 
@@ -13,7 +14,15 @@ export function BecomeMember({ title = "Become a member", text = DEFAULT_TEXT }:
   return (
     <section className={styles.wrap}>
       <div className={styles.row}>
-        <div className={styles.img} aria-hidden="true" />
+        <div className={styles.img}>
+          <Image
+            src="/lifestyle/become-member.jpg"
+            alt="Manual sculpt at the studio"
+            fill
+            sizes="(max-width: 800px) 100vw, 45vw"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
         <div className={styles.info}>
           <span className={styles.eyebrow}>Membership</span>
           <h2 className={styles.title}>{title}</h2>

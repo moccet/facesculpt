@@ -8,6 +8,7 @@ export type Workout = {
   details: string[];
   flag?: string;
   bookValue: string;
+  image?: string;
 };
 
 export type Booster = {
@@ -38,6 +39,7 @@ export type Product = {
   price: number;
   memberPrice: number;
   flag?: string;
+  image?: string;
 };
 
 export type FAQ = { q: string; a: string };

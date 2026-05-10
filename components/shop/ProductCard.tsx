@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/lib/cart";
@@ -32,6 +33,15 @@ export function ProductCard({ product, alt = false }: Props) {
       style={{ textAlign: "left", border: "none", cursor: "pointer", width: "100%" }}
     >
       <div className={styles.img}>
+        {product.image && (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 280px"
+            style={{ objectFit: "cover" }}
+          />
+        )}
         {product.flag && <span className={styles.flag}>{product.flag}</span>}
       </div>
       <span className={styles.name}>{product.name}</span>

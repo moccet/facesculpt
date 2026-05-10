@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { SubscribeButton } from "./SubscribeButton";
 import buttonStyles from "@/components/ui/Button.module.css";
@@ -7,7 +8,15 @@ export function JoinBlock() {
   return (
     <section className={styles.wrap}>
       <div className={styles.row}>
-        <div className={styles.img} aria-hidden="true" />
+        <div className={styles.img}>
+          <Image
+            src="/lifestyle/become-member.jpg"
+            alt="Manual sculpt at the studio"
+            fill
+            sizes="(max-width: 800px) 100vw, 45vw"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
         <div className={styles.info}>
           <span className={styles.eyebrow}>Membership</span>
           <h2 className={styles.title}>Join today.</h2>

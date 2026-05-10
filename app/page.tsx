@@ -35,6 +35,9 @@ export default function HomePage() {
         title={<>More than a facial.<br />A sculpt.</>}
         size="xl"
         titleId="heroTitle"
+        image="/lifestyle/home-hero.jpg"
+        imageAlt="Manual lymphatic sculpt at FaceSculpt by The Wellness"
+        imagePosition="center"
         actions={
           <>
             <Button href="/workouts#book" variant="dark">Book a workout</Button>

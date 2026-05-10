@@ -23,6 +23,9 @@ export default function WorkoutsPage() {
         flag="Workouts · Boosters · Programmes"
         title={<>More than a facial.<br />A workout.</>}
         size="lg"
+        image="/lifestyle/workouts-hero.jpg"
+        imageAlt="Cooling face roller treatment at FaceSculpt"
+        imagePosition="top"
       />
       <WhatWeDo />
       <ExpectGrid />

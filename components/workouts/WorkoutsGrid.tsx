@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { WORKOUTS } from "@/lib/content";
 import { SectionHead } from "@/components/ui/SectionHead";
@@ -16,6 +17,15 @@ export function WorkoutsGrid() {
           {WORKOUTS.map((w) => (
             <article key={w.slug} className={styles.card} id={w.slug}>
               <div className={styles.img}>
+                {w.image && (
+                  <Image
+                    src={w.image}
+                    alt={w.name}
+                    fill
+                    sizes="(max-width: 700px) 100vw, (max-width: 1080px) 50vw, 360px"
+                    style={{ objectFit: "cover" }}
+                  />
+                )}
                 {w.flag && <span className={styles.flag}>{w.flag}</span>}
               </div>
               <h3 className={styles.name}>{w.name}</h3>
