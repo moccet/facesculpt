@@ -3,7 +3,6 @@ import { Hero } from "@/components/ui/Hero";
 import { Split } from "@/components/about/Split";
 import { TeamGrid } from "@/components/about/TeamGrid";
 import { RecordSection } from "@/components/about/RecordSection";
-import { FoundersGrid } from "@/components/about/FoundersGrid";
 import { BecomeMember } from "@/components/ui/BecomeMember";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { ABOUT_FAQ } from "@/lib/content";
@@ -50,7 +49,6 @@ export default function AboutPage() {
         ]}
       />
       <RecordSection />
-      <FoundersGrid />
       <BecomeMember
         title="Become a member."
         text="Standard at £100 a month, one Sculpt Signature included plus twenty per cent off additional workouts. Plus at £250 a month for fortnightly cadence and a dedicated therapist. Three month minimum on both."

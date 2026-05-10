@@ -40,7 +40,7 @@ components/
                             SiteFooter, Wordmark, NewsletterForm
   ui/                       Button, Hero, SectionHead, FAQAccordion, BecomeMember
   home/                     BestsellersCarousel, TwoTiles, FindStudio
-  about/                    Split, TeamGrid, RecordSection, FoundersGrid
+  about/                    Split, TeamGrid, RecordSection
   workouts/                 WhatWeDo, ExpectGrid, WorkoutsGrid,
                             BoostersGrid, ProgrammesGrid, BookingForm
   membership/               TiersGrid, MathSection, HowItWorks, JoinBlock

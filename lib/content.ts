@@ -325,11 +325,6 @@ export const TEAM = [
   { name: "Therapist three", role: "EMS Lift Intensive", bio: "Sports therapy background, four years in facial EMS. Runs the EMS Lift Intensive and the Jaw EMS booster. Trained on faradic, interferential and TENS protocols.", image: "/lifestyle/workout-ems.jpg" },
 ];
 
-export const FOUNDERS = [
-  { name: "Omar", role: "Co-founder · The Wellness, FaceSculpt", bio: "Doctor by training, GMC registered. MD, BSc and MPH from Harvard. AI research at Oxford. Co-founded The Wellness on Portman Square in 2024 to run a different model of private healthcare in London. FaceSculpt is the facial sculpting line of that practice." },
-  { name: "Sofian", role: "Co-founder · The Wellness, FaceSculpt", bio: "Engineer by training, twenty five years building software inside healthcare and consumer brands. Runs the technology and operations side of The Wellness. Built the photographic record system that runs every FaceSculpt session." },
-];
-
 export const HOW_STEPS = [
   { num: "01 · Sign up", title: "Sign up online", text: "Subscribe via Stripe. First month is charged at signup; the studio confirms session one inside one working day." },
   { num: "02 · First session", title: "Book session one", text: "Inside seven days of joining. Photographs and biometric assessment taken at session one, saved to your file." },
