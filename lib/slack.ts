@@ -21,30 +21,34 @@ export async function postWithRetry(
 ): Promise<Response> {
   let lastError: unknown;
   for (let i = 0; i < attempts; i++) {
+    let response: Response | undefined;
     try {
-      const response = await fetch(url, {
+      response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      if (response.ok) return response;
+    } catch (err) {
+      lastError = err;
+      console.error(
+        `[slack] post attempt ${i + 1}/${attempts} network error:`,
+        err instanceof Error ? err.message : err,
+      );
+    }
 
+    if (response) {
+      if (response.ok) return response;
       const snippet = await readBodySnippet(response);
       const msg = `Slack webhook responded ${response.status}: ${snippet}`;
       console.error(`[slack] ${msg}`);
-      // 4xx (other than 408/425/429) means the webhook URL is wrong or
-      // unauthorized — retrying won't help, surface the failure now.
+      // 4xx (other than 408/425/429) means the URL is dead/unauthorized —
+      // retrying won't help, surface the failure immediately.
       if (!RETRY_STATUSES.has(response.status)) {
         throw new Error(msg);
       }
       lastError = new Error(msg);
-    } catch (err) {
-      lastError = err;
-      console.error(
-        `[slack] post attempt ${i + 1}/${attempts} failed:`,
-        err instanceof Error ? err.message : err,
-      );
     }
+
     if (i < attempts - 1) {
       await new Promise((r) => setTimeout(r, 300 * Math.pow(2, i)));
     }
